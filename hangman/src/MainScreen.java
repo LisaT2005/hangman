@@ -70,9 +70,9 @@ public class MainScreen {
 		clothing = new GameButton(250, 115, "clothing", 75, 645, 600);
 		
 		buttons.add(animals.getButton());
-	    buttons.add(countries.getButton());
-	    buttons.add(food.getButton());
-	    buttons.add(clothing.getButton());
+	    	buttons.add(countries.getButton());
+	    	buttons.add(food.getButton());
+	    	buttons.add(clothing.getButton());
 		
 		mainPanel.add(animals.getPanel());
 		mainPanel.add(countries.getPanel());
