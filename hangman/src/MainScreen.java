@@ -14,6 +14,7 @@ public class MainScreen {
 	private GameButton food;
 	private GameButton clothing;
 	private ArrayList<JButton> buttons = new ArrayList<>();
+	private JPanel mainPanel = new JPanel();
 
 	public MainScreen() {
 
@@ -22,15 +23,9 @@ public class MainScreen {
 
 		Font subtitleFont = titleFont.deriveFont(Font.PLAIN, 75);
 
-		// main window JFrame
-		JFrame window = new JFrame();
-		window.setSize(1250, 780); //center x is 625
-		window.setLayout(null);
-		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-		// creating Container
-		Container con = window.getContentPane();
-		con.setBackground(Color.white);
+		mainPanel.setSize(1250, 780);
+		mainPanel.setBackground(Color.white);
+		mainPanel.setLayout(null);
 
 		// creating image
 		java.net.URL imgUrl = getClass().getResource("mascot.png");
@@ -42,9 +37,11 @@ public class MainScreen {
 		imagePanel.setBackground(Color.white);
 		label.setVisible(true);
 		imagePanel.setBounds(520, 150, 209, 193); // position: x = 520, y = 0, image is 209x193 pixels
-
+		
 		imagePanel.add(label);
-		con.add(imagePanel);
+		mainPanel.add(imagePanel);
+		
+		
 
 		JPanel titlePanel = new JPanel();
 		titlePanel.setBounds(125, 0, 1000, 200);
@@ -55,15 +52,15 @@ public class MainScreen {
 		titlePanel.add(titleLabel);
 
 		JPanel subtitlePanel = new JPanel();
-		subtitlePanel.setBounds(125, 350, 1000, 200);
+		subtitlePanel.setBounds(125, 350, 1000, 100);
 		subtitlePanel.setBackground(Color.white);
 		JLabel subtitleLabel = new JLabel("Choose a category to play with: ");
 		subtitleLabel.setFont(subtitleFont);
 		subtitleLabel.setForeground(Color.black);
 		subtitlePanel.add(subtitleLabel);
-
-		con.add(titlePanel);
-		con.add(subtitlePanel);
+		
+		mainPanel.add(titlePanel);
+		mainPanel.add(subtitlePanel);
 		
 		//new GameButton(int width, int height, String text, int fontSize, int x, int y)
 		
@@ -76,18 +73,20 @@ public class MainScreen {
 	    buttons.add(countries.getButton());
 	    buttons.add(food.getButton());
 	    buttons.add(clothing.getButton());
-				
-		con.add(animals.getPanel());
-		con.add(countries.getPanel());
-		con.add(food.getPanel());
-		con.add(clothing.getPanel());
-	
-		window.setVisible(true);
+		
+		mainPanel.add(animals.getPanel());
+		mainPanel.add(countries.getPanel());
+		mainPanel.add(food.getPanel());
+		mainPanel.add(clothing.getPanel());
 
 	}
 	
 	public ArrayList<JButton> getButtonsList(){
 		return buttons;
+	}
+	
+	public JPanel getPanel() {
+		return mainPanel;
 	}
 
 	private static Font getFont(String name) {
