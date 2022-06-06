@@ -7,3 +7,4 @@ download instructions
 3. In Eclipse, go to File -> Open projects from file system
 4. Select the folder "hangman" inside of the "hangman-main" folder
 5. Click "finish"
+
