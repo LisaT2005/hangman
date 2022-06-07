@@ -37,7 +37,7 @@ public class Game {
 
 		mainFrame.add(mainPanel);
 		mainFrame.setSize(1250, 780);
-		mainFtame.setResizable(false);
+		mainFrame.setResizable(false);
 		mainFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		mainFrame.setVisible(true);
 	}
