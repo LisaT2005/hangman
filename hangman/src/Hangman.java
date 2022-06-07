@@ -23,8 +23,7 @@ public class Hangman extends JPanel {
 
 	public Hangman(String fileName) {
 
-		Font font = getFont("WhiskeyBite-Regular.otf");
-		font = font.deriveFont(Font.TRUETYPE_FONT, 75);
+		Font font = getFont("WhiskeyBite-Regular.otf").deriveFont(Font.TRUETYPE_FONT, 75);
 		
 		words = importFile(fileName);
 		String correct = words.get((int) (Math.random() * words.size())); 
@@ -82,7 +81,7 @@ public class Hangman extends JPanel {
 				text.setText("");
 				return;
 			}
-			for (int i = 0; i<input.length(); i++) {
+			for (int i = 0; i < input.length(); i++) {
 				if (!Character.isLetter(input.charAt(i))) {
 					text.setText("");
 					return;
@@ -91,21 +90,19 @@ public class Hangman extends JPanel {
 			
 			
 			if (input.length() == 1) {
-				
 				if (letters.indexOf(input) > -1) { //checks if letter has already been guessed
 					text.setText("");
 					
 				} else { //updates guesses label _ _ _ _ _
 					if (correct.indexOf(input) == -1) {
 						wrong++;
-					}
-					
-					for (int i = 0; i < correct.length(); i++) {
-						if (input.equals(correct.substring(i, i + 1))) {
-							label = label.substring(0, i) + input + label.substring(i + 1);
+					} else {
+						for (int i = 0; i < correct.length(); i++) {
+							if (input.equals(correct.substring(i, i + 1))) {
+								label = label.substring(0, i) + input + label.substring(i + 1);
+							}
 						}
 					}
-					
 					letters += input + " ";
 				}
 			} else { //input length > 1
@@ -115,11 +112,9 @@ public class Hangman extends JPanel {
 					wrong++;
 				}
 			}
-			
 			guessesLabel.setText(label);
 			
 			if (label.equals(correct) && wrong == 9) {
-				wrong = 11;
 				this.repaint(new Rectangle(375, 450));
 				
 				//after delay of 1 second displayWinningScreen(ninthAttempt true, snail false)
@@ -142,13 +137,18 @@ public class Hangman extends JPanel {
 				
 			} else if (input.equals("SNAIL")){
 				
-				//displayWinningScreen(ninthAttempt false, snail true)
+				//after delay of 1 second displayWinningScreen(snail true)
+				wrong--;
 				text.setEditable(false);
-				Game.showWinningScreen(false, true);
+				Timer t = new Timer(1000, f ->{
+					Game.showWinningScreen(false, true);
+				});
+				t.setRepeats(false);
+				t.start();
 				
 			} else if (wrong == 10) {
 			
-				//after delay of 1 second display losing screen
+				//after delay of 1 seconds display losing screen
 				text.setEditable(false);
 				Timer t = new Timer(1000, f ->{
 					
@@ -207,10 +207,8 @@ public class Hangman extends JPanel {
 		Rectangle bottom = new Rectangle(360, -300, 10, 165);
 		Shape bottomline = line2.createTransformedShape(bottom);
 		g2d.fill(bottomline);
-
-		if (wrong <= 11) {
-			addLimb(wrong, g2d);
-		}
+		
+		addLimb(wrong, g2d);
 	}
 
 	public static void addLimb(int numGuess, Graphics2D g2d) {
@@ -355,16 +353,16 @@ public class Hangman extends JPanel {
 		g2d.fill(legz2);
 	}
 
+	public static void eye1(Graphics2D g2d) {
+		leg2(g2d);
+		Ellipse2D.Double eye1 = new Ellipse2D.Double(90, 75, 10, 20);
+		g2d.fill(eye1);
+	}
+
 	public static void eye2(Graphics2D g2d) {
 		eye1(g2d);
-		Ellipse2D.Double eye2 = new Ellipse2D.Double(120, 75, 15, 25);
+		Ellipse2D.Double eye2 = new Ellipse2D.Double(120, 75, 10, 20);
 		g2d.fill(eye2);
-	}
-	
-	public static void nose(Graphics2D g2d) {
-		eye2(g2d);
-		Ellipse2D.Double n = new Ellipse2D.Double(105, 95, 10, 10);
-		g2d.fill(n);
 	}
 	
 	public static void nose(Graphics2D g2d) {
