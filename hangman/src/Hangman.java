@@ -355,16 +355,16 @@ public class Hangman extends JPanel {
 		g2d.fill(legz2);
 	}
 
-	public static void eye1(Graphics2D g2d) {
-		leg2(g2d);
-		Ellipse2D.Double eye1 = new Ellipse2D.Double(90, 75, 10, 20);
-		g2d.fill(eye1);
-	}
-
 	public static void eye2(Graphics2D g2d) {
 		eye1(g2d);
-		Ellipse2D.Double eye2 = new Ellipse2D.Double(120, 75, 10, 20);
+		Ellipse2D.Double eye2 = new Ellipse2D.Double(120, 75, 15, 25);
 		g2d.fill(eye2);
+	}
+	
+	public static void nose(Graphics2D g2d) {
+		eye2(g2d);
+		Ellipse2D.Double n = new Ellipse2D.Double(105, 95, 10, 10);
+		g2d.fill(n);
 	}
 	
 	public static void nose(Graphics2D g2d) {
