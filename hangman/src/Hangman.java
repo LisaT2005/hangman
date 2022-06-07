@@ -140,7 +140,7 @@ public class Hangman extends JPanel {
 				//after delay of 1 second displayWinningScreen(snail true)
 				wrong--;
 				text.setEditable(false);
-				Timer t = new Timer(1000, f ->{
+				Timer t = new Timer(500, f ->{
 					Game.showWinningScreen(false, true);
 				});
 				t.setRepeats(false);
